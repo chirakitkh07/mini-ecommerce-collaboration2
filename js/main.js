@@ -22,20 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
         products.forEach(product => {
             const card = document.createElement('div');
             card.className = 'product-card';
-            card.innerHTML = `
-                <img src="${product.image}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>ราคา: ${product.price} บาท</p>
-            `;
+            card.innerHTML = 
+                <><img src="${product.image}" alt="${product.name}" /><h3>${product.name}</h3><p>ราคา: ${product.price} บาท</p></>;
             productList.appendChild(card);
         });
     }
 
-    // Inefficient Search
     searchInput.addEventListener('keyup', () => {
-        const searchTerm = searchInput.value.toLowerCase();
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        if (searchTerm === '') {
+        displayProducts(allProducts);
+        return;
+    }
         const filteredProducts = allProducts.filter(product => {
-            // Simple search, not very efficient
             return product.name.toLowerCase().includes(searchTerm);
         });
         displayProducts(filteredProducts);
